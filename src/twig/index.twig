@@ -1,0 +1,299 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="stylesheets/dev.css">
+  <link rel="stylesheet" href="stylesheets/message.css">
+</head>
+
+<body>
+
+  <div id="sidebar" class="app">
+    <nav id="sidebar-tabs" class="tabs">
+      <a class="item active" title="Chat Log" data-tab="chat">
+        <i class="fas fa-comments"></i>
+        <i id="chat-notification" class="notification-pip fas fa-exclamation-circle"></i>
+      </a>
+      <a class="item" title="Combat Tracker" data-tab="combat"><i class="fas fa-fist-raised"></i></a>
+      <a class="item" title="Scenes Directory" data-tab="scenes"><i class="fas fa-map"></i></a>
+      <a class="item" title="Actors Directory" data-tab="actors"><i class="fas fa-users"></i></a>
+      <a class="item" title="Items Directory" data-tab="items"><i class="fas fa-suitcase"></i></a>
+      <a class="item" title="Journal Entries" data-tab="journal"><i class="fas fa-book-open"></i></a>
+      <a class="item" title="Rollable Tables" data-tab="tables"><i class="fas fa-th-list"></i></a>
+      <a class="item" title="Audio Playlists" data-tab="playlists"><i class="fas fa-music"></i></a>
+      <a class="item" title="Compendium Packs" data-tab="compendium"><i class="fas fa-atlas"></i></a>
+      <a class="item" title="Game Settings" data-tab="settings">
+        <i class="fas fa-cogs"></i>
+      </a>
+      <a class="collapse" title="Collapse or Expand"><i class="fas fa-caret-right"></i></a>
+    </nav>
+
+    <section class="sidebar-tab tab flexcol active" id="chat" data-tab="chat">
+      {% include "_chat-log.twig" %}
+
+      <div id="chat-controls" class="flexrow">
+        <div class="roll-type-select">
+          <label><i class="fas fa-dice-d20"></i></label>
+          <select name="rollMode">
+            <optgroup label="Default Roll Mode">
+              <option value="roll" selected="">Public Roll</option>
+              <option value="gmroll">Private GM Roll</option>
+              <option value="blindroll">Blind GM Roll</option>
+              <option value="selfroll">Self Roll</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="control-buttons">
+          <a class="button export-log" title="Export Chat Log"><i class="fas fa-save"></i></a>
+          <a class="delete button chat-flush" title="Clear Chat Log"><i class="fas fa-trash"></i></a>
+        </div>
+      </div>
+
+      <form id="chat-form">
+        <textarea id="chat-message" autocomplete="nope"></textarea>
+      </form>
+    </section>
+    <section class="sidebar-tab tab flexcol" id="combat" data-tab="combat">
+      <header id="combat-round">
+        <nav class="encounters flexrow">
+          <a class="combat-settings" title="Combat Tracker Settings" data-control="trackerSettings">
+            <i class="fas fa-cog"></i>
+          </a>
+        </nav>
+
+        <nav class="encounters flexrow">
+          <a class="combat-create" title="Create Encounter">
+            <i class="fas fa-plus"></i>
+          </a>
+          <a class="combat-control" title="Roll NPCs" data-control="rollNPC" disabled="">
+            <i class="fas fa-users-cog"></i>
+          </a>
+
+          <h3>No Active Encounter</h3>
+
+          <a class="combat-control" title="Roll All" data-control="rollAll" disabled="">
+            <i class="fas fa-users"></i>
+          </a>
+          <a class="combat-control" title="Delete Encounter" data-control="endCombat" disabled="">
+            <i class="fas fa-trash"></i>
+          </a>
+        </nav>
+      </header>
+
+      <ol id="combat-tracker" class="directory-list">
+      </ol>
+
+      <nav id="combat-controls" class="directory-footer flexrow">
+      </nav>
+    </section>
+    <section class="sidebar-tab sidebar-directory tab flexcol" id="scenes" data-tab="scenes">
+
+      <!-- Directory Header -->
+      <header class="directory-header flexrow">
+        <div class="header-search">
+          <i class="fas fa-search"></i>
+          <input type="text" name="search" value="" placeholder="Search Scenes" autocomplete="off">
+        </div>
+        <a class="header-control collapse-all" title="Collapse All Folders"><i
+            class="fas fa-sort-amount-up fa-fw"></i></a>
+      </header>
+
+      <!-- Directories List -->
+      <ol class="directory-list"></ol>
+
+      <!-- Directory Footer -->
+      <footer class="directory-footer">
+        <button class="create-entity"><i class="fas fa-map"></i> Create Scene</button>
+        <button class="create-folder"><i class="fas fa-folder"></i> Create Folder</button>
+      </footer>
+    </section>
+    <section class="sidebar-tab sidebar-directory tab flexcol" id="actors" data-tab="actors">
+
+      <!-- Directory Header -->
+      <header class="directory-header flexrow">
+        <div class="header-search">
+          <i class="fas fa-search"></i>
+          <input type="text" name="search" value="" placeholder="Search Actors" autocomplete="off">
+        </div>
+        <a class="header-control collapse-all" title="Collapse All Folders"><i
+            class="fas fa-sort-amount-up fa-fw"></i></a>
+      </header>
+
+      <!-- Directories List -->
+      <ol class="directory-list">
+        <li class="directory-item entity actor flexrow" data-entity-id="4FPamd2QVq1LtyH4" draggable="true">
+          <img class="profile actor-profile" title="Person" data-src="icons/svg/mystery-man.svg">
+          <h4 class="entity-name"><a>Person</a></h4>
+        </li>
+        <li class="directory-item entity actor flexrow" data-entity-id="33wfNmsc5IhcVcXL" draggable="true">
+          <img class="profile actor-profile" title="afasfd" data-src="icons/svg/mystery-man.svg">
+          <h4 class="entity-name"><a>afasfd</a></h4>
+        </li>
+        <li class="directory-item entity actor flexrow" data-entity-id="roK8RxFce43SQSJl" draggable="true">
+          <img class="profile actor-profile" title="asdfasdf" data-src="icons/svg/mystery-man.svg">
+          <h4 class="entity-name"><a>asdfasdf</a></h4>
+        </li>
+      </ol>
+
+      <!-- Directory Footer -->
+      <footer class="directory-footer">
+        <button class="create-entity"><i class="fas fa-user"></i> Create Actor</button>
+        <button class="create-folder"><i class="fas fa-folder"></i> Create Folder</button>
+      </footer>
+    </section>
+    <section class="sidebar-tab sidebar-directory tab flexcol" id="items" data-tab="items">
+
+      <!-- Directory Header -->
+      <header class="directory-header flexrow">
+        <div class="header-search">
+          <i class="fas fa-search"></i>
+          <input type="text" name="search" value="" placeholder="Search Items" autocomplete="off">
+        </div>
+        <a class="header-control collapse-all" title="Collapse All Folders"><i
+            class="fas fa-sort-amount-up fa-fw"></i></a>
+      </header>
+
+      <!-- Directories List -->
+      <ol class="directory-list"></ol>
+
+      <!-- Directory Footer -->
+      <footer class="directory-footer">
+        <button class="create-entity"><i class="fas fa-suitcase"></i> Create Item</button>
+        <button class="create-folder"><i class="fas fa-folder"></i> Create Folder</button>
+      </footer>
+    </section>
+    <section class="sidebar-tab sidebar-directory tab flexcol" id="journal" data-tab="journal">
+
+      <!-- Directory Header -->
+      <header class="directory-header flexrow">
+        <div class="header-search">
+          <i class="fas fa-search"></i>
+          <input type="text" name="search" value="" placeholder="Search Journal Entries" autocomplete="off">
+        </div>
+        <a class="header-control collapse-all" title="Collapse All Folders"><i
+            class="fas fa-sort-amount-up fa-fw"></i></a>
+      </header>
+
+      <!-- Directories List -->
+      <ol class="directory-list"></ol>
+
+      <!-- Directory Footer -->
+      <footer class="directory-footer">
+        <button class="create-entity"><i class="fas fa-feather"></i> Create Entry</button>
+        <button class="create-folder"><i class="fas fa-folder"></i> Create Folder</button>
+      </footer>
+    </section>
+    <section class="sidebar-tab sidebar-directory tab flexcol" id="tables" data-tab="tables">
+
+      <!-- Directory Header -->
+      <header class="directory-header flexrow">
+        <div class="header-search">
+          <i class="fas fa-search"></i>
+          <input type="text" name="search" value="" placeholder="Search Tables" autocomplete="off">
+        </div>
+        <a class="header-control collapse-all" title="Collapse All Folders"><i
+            class="fas fa-sort-amount-up fa-fw"></i></a>
+      </header>
+
+      <!-- Directories List -->
+      <ol class="directory-list"></ol>
+
+      <!-- Directory Footer -->
+      <footer class="directory-footer">
+        <button class="create-entity"><i class="fas fa-suitcase"></i> Create Table</button>
+        <button class="create-folder"><i class="fas fa-folder"></i> Create Folder</button>
+      </footer>
+    </section>
+    <section class="sidebar-tab tab flexcol" id="playlists" data-tab="playlists">
+      <ol class="directory-list">
+        <li class="directory-item playlist flexrow">
+          <header class="playlist-header flexrow">
+            <h4>Global Volume Controls</h4>
+          </header>
+
+          <ol class="playlist-sounds">
+            <li class="sound flexrow">
+              <h4 class="sound-name">Playlists</h4>
+              <input class="global-volume" name="globalPlaylistVolume" type="range" min="0" max="1" step="0.05"
+                value="1">
+            </li>
+            <li class="sound flexrow">
+              <h4 class="sound-name">Ambient</h4>
+              <input class="global-volume" name="globalAmbientVolume" type="range" min="0" max="1" step="0.05"
+                value="1">
+            </li>
+            <li class="sound flexrow">
+              <h4 class="sound-name">Interface</h4>
+              <input class="global-volume" name="globalInterfaceVolume" type="range" min="0" max="1" step="0.05"
+                value="0.7071067811865476">
+            </li>
+          </ol>
+        </li>
+
+      </ol>
+
+      <!-- Directory Footer -->
+      <footer class="directory-footer">
+        <button class="create-entity"><i class="fas fa-music"></i> Create Playlist</button>
+      </footer>
+    </section>
+    <section class="sidebar-tab tab flexcol" id="compendium" data-tab="compendium">
+      <ol class="directory-list">
+      </ol>
+
+      <footer class="directory-footer">
+        <button class="create-compendium" type="submit"><i class="fas fa-atlas"></i> Create Compendium</button>
+      </footer>
+    </section>
+    <section class="sidebar-tab tab" id="settings" data-tab="settings">
+
+      <h2>General Information</h2>
+      <div class="game-system">
+        <h4>Foundry Virtual Tabletop - Beta 0.5.7</h4>
+        <h4>FATE 0.3.1</h4>
+      </div>
+
+      <h2>Game Settings</h2>
+      <button data-action="configure">
+        <i class="fas fa-cogs"></i> Configure Settings
+      </button>
+
+      <button data-action="modules">
+        <i class="fas fa-cube"></i>
+        Manage Modules
+      </button>
+
+      <button data-action="players">
+        <i class="fas fa-users"></i> Configure Players
+      </button>
+
+
+      <button data-action="setup">
+        <i class="fas fa-home"></i> Return to Setup
+      </button>
+
+      <h2>Help Documentation</h2>
+      <button data-action="controls">
+        <i class="fas fa-gamepad"></i> Controls Reference
+      </button>
+      <button data-action="docs">
+        <i class="fas fa-book"></i> View Documentation
+      </button>
+      <button data-action="wiki">
+        <i class="fas fa-landmark"></i> Community Wiki Pages
+      </button>
+
+      <h2>Game Invitation Links</h2>
+      <button data-action="invitations">
+        <i class="fas fa-wifi"></i> Invitation Links
+      </button>
+
+      <button data-action="logout">
+        <i class="fas fa-door-closed"></i> Log Out
+      </button>
+    </section>
+  </div>
+
+</body>
+
+</html>

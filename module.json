@@ -1,0 +1,9 @@
+{
+  "name": "foundryvtt-chat-styling",
+  "title": "Chat Styling FVTT Module",
+  "description": "A simple module for styling the chat sidebar.",
+  "author": "@amazingrando",
+  "version": "1.0.0",
+  "minimumCoreVersion": "0.5.0",
+  "styles": ["styles/main.css"]
+}

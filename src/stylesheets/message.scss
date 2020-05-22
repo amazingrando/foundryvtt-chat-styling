@@ -1,0 +1,48 @@
+#chat-log {
+  .message {
+
+    &.whisper {}
+
+    &.blind {}
+  }
+
+  .message-header {
+    .message-sender {}
+
+    .message-metadata {}
+
+    .message-timestamp {}
+
+    .message-delete {}
+  }
+
+  .message-content {
+    .dice-roll {
+      .dice-result {
+        .dice-formula {}
+
+        .dice-tooltip {
+          .tooltip-part {
+            .dice {
+              .part-formula {
+                .part-total {}
+              }
+
+              .dice-rolls {
+                .roll {
+                  &.min {}
+
+                  &.max {}
+
+                  &.fatedie {}
+                }
+              }
+            }
+          }
+        }
+
+        .dice-total {}
+      }
+    }
+  }
+}

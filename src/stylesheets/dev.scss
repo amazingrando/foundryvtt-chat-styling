@@ -1,0 +1,26 @@
+/**
+ * dev.scss recreates the base styles of FoundryVTT
+ * for faster development locally.
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Signika:wght@300;400;600;700&display=swap");
+
+$fa-font-path: "../fonts";
+@import "../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "../../node_modules/@fortawesome/fontawesome-free/scss/regular.scss";
+@import "../../node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
+
+@import "./dev-only-assets/foundry-base.scss";
+
+body {
+  background-image: url("../images/denim.png");
+  font-family: "Signika", sans-serif;
+}
+
+.app {
+  background-image: url("../images/denim075.png");
+}
+
+#chat-log .message {
+  background: url("../images/parchment.jpg") repeat;
+}
